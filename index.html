@@ -1,7 +1,118 @@
-<!doctype html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>Panagiotis Tsamis</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panagiotis Tsamis | Fullstack Engineer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%23007bff%22 font-family=%22sans-serif%22 font-weight=%22bold%22>P</text></svg>">
 </head>
 <body>
-  <h1> My Name is Panagiotis Tsamis</h1>
+
+    <canvas id="math-canvas"></canvas>
+
+    <div class="overlay"></div>
+
+    <header>
+        <div class="logo">PanTsamis<span>.dev</span></div>
+        <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙</button>
+    </header>
+
+    <main class="container">
+        <section class="hero glass-card">
+            <div class="hero-content">
+                <div class="badge">19-year-old CS Student</div>
+                <h1>Hi, I'm <span class="highlight">Panagiotis Tsamis</span></h1>
+                <h2>Fullstack Software Engineer</h2>
+                <p>
+                    Studying at <strong>DIT EKPA</strong>. I turn complex logic into clean, efficient code.
+                    Passionate about algorithms, web development, and hardware engineering.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <span>18,888 Panhellenic Score</span>
+                        <small>100/100 Math & CS</small>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fa-solid fa-language"></i>
+                        <span>ECPE Michigan</span>
+                        <small>Proficiency in English</small>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="https://github.com/PanTsamis" target="_blank"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="mailto:your-email@example.com"><i class="fa-solid fa-envelope"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <section class="skills-grid">
+            <div class="glass-card skill-card">
+                <h3><i class="fa-solid fa-code"></i> Languages</h3>
+                <div class="tags">
+                    <span>Python</span>
+                    <span>C</span>
+                    <span>JavaScript</span>
+                    <span>HTML5</span>
+                    <span>CSS3</span>
+                </div>
+            </div>
+            <div class="glass-card skill-card">
+                <h3><i class="fa-solid fa-terminal"></i> Tools</h3>
+                <div class="tags">
+                    <span>Git & GitHub</span>
+                    <span>Linux Terminal</span>
+                    <span>VS Code</span>
+                </div>
+            </div>
+            <div class="glass-card skill-card">
+                <h3><i class="fa-solid fa-microchip"></i> Hardware</h3>
+                <div class="tags">
+                    <span>PC Building</span>
+                    <span>Hardware Diagnostics</span>
+                    <span>System Architecture</span>
+                </div>
+            </div>
+        </section>
+
+        <h2 class="section-title">Featured Projects</h2>
+        <section class="projects-grid">
+            
+            <div class="glass-card project-card">
+                <div class="project-header">
+                    <i class="fa-solid fa-calculator project-icon"></i>
+                    <h3>Aliquot Sequence Calculator</h3>
+                </div>
+                <p>A full-stack web application that calculates Aliquot sequences. Built with C (Backend) for performance and Python CGI middleware.</p>
+                <div class="tags">
+                    <span class="tech-tag">C</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">HTML/JS</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://pantsamis.github.io/aliquot/" class="btn-primary" target="_blank">View Live</a>
+                    <a href="https://github.com/PanTsamis/aliquot" class="btn-secondary" target="_blank">Code</a>
+                </div>
+            </div>
+
+            <div class="glass-card project-card coming-soon">
+                <div class="project-header">
+                    <i class="fa-solid fa-code-branch project-icon"></i>
+                    <h3>More Coming Soon...</h3>
+                </div>
+                <p>Currently working on new exciting projects at university.</p>
+            </div>
+
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with <i class="fa-solid fa-heart"></i> & Code by PanTsamis</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
+</html>
