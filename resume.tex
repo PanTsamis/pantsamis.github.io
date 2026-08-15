@@ -1,0 +1,171 @@
+%-------------------------
+% Resume in Latex
+% Based on Jake Gutierrez's Resume Template (MIT License)
+% For: Panagiotis Tsamis
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{6pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-4pt}]
+
+% A little extra breathing room between lines overall
+\renewcommand{\baselinestretch}{1.06}
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{1pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{1pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{0pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{0pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{0pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{1pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}, itemsep=3pt]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{2pt}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[itemsep=1pt]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{2pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Panagiotis Tsamis} \\ \vspace{1pt}
+    \small Athens, Greece $|$
+    \href{mailto:ptsames@gmail.com}{\underline{ptsames@gmail.com}} $|$
+    \href{https://github.com/PanTsamis}{\underline{github.com/PanTsamis}} $|$
+    \href{https://www.linkedin.com/in/panagiotis-tsamis-a5aa66382/}{\underline{linkedin.com/in/panagiotis-tsamis}} $|$
+    \href{https://pantsamis.github.io}{\underline{pantsamis.github.io}}
+\end{center}
+
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {National and Kapodistrian University of Athens (DIT UOA)}{Athens, Greece}
+      {B.Sc. in Informatics and Telecommunications; GPA: 8.5+/10}{Sep. 2025 -- Jun. 2029 (Expected)}
+      \resumeItemListStart
+        \resumeItem{Entered with the 2nd-highest grade among all incoming DIT UOA students in 2025 (Panhellenic Exams score: 18.888/20, Mathematics: 100/100, Computer Science: 100/100)}
+        \resumeItem{Relevant Coursework: Introduction to Programming with C (9/10), Data Structures \& Algorithms (10/10)}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: C/C++, Python, TypeScript, JavaScript, SQL, HTML/CSS} \\[3pt]
+     \textbf{Frameworks \& Backend}{: FastAPI, Next.js, REST APIs, PostgreSQL} \\[3pt]
+     \textbf{DevOps \& Cloud}{: Docker, Kubernetes, CI/CD, GitHub Actions, Microsoft Azure, Vercel} \\[3pt]
+     \textbf{Systems}{: Linux, Bash, Command Line / Terminal, Scripting} \\[3pt]
+     \textbf{Tools \& AI}{: Git, GitHub, Claude Code, MCP (Model Context Protocol), LaTeX}
+    }}
+ \end{itemize}
+ \vspace{2pt}
+
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{p1ng2r.gg} $|$ \emph{Riot API, Docker, Vercel, Neon}}{}
+          \resumeItemListStart
+            \resumeItem{Built a website for looking up League of Legends player stats using Riot Games' API}
+            \resumeItem{Deployed on Vercel with a Neon (serverless Postgres) database, containerized with Docker}
+            \resumeItem{\href{https://p1ng2r-gg.vercel.app/}{\underline{p1ng2r-gg.vercel.app}}}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{Mylonas Discord Bot} $|$ \emph{Python, discord.py, Gemini API}}{}
+          \resumeItemListStart
+            \resumeItem{Built a Discord bot that provides quick, AI-Overview-style answers in text channels using Google's Gemini, activated by tagging the bot}
+            \resumeItem{Deployed to run continuously (24/7) in production Discord servers}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{Elevator Optimization + MCP Server} $|$ \emph{C, Dynamic Programming, MCP}}{}
+          \resumeItemListStart
+            \resumeItem{Wrote a C program that solves optimal elevator placement to minimize walking cost, implementing memoization, brute-force, and dynamic-programming approaches}
+            \resumeItem{Exposed the solver as an MCP server so AI coding tools (e.g. Claude Code) can call it directly}
+            \resumeItem{\href{https://pantsamis.github.io/elevator-optimization/}{\underline{Live Demo}} $|$ \href{https://github.com/PanTsamis/elevator-optimization}{\underline{Source Code}}}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+
+%-----------CERTIFICATIONS & AWARDS-----------
+\section{Certifications \& Awards}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{Michigan ECPE} -- C2-level certification in English proficiency, University of Michigan}{2022}
+      \resumeProjectHeading
+          {\textbf{Eurobank "Mprosta gia tin Paideia" Award} -- For excellence in the 2025 Panhellenic exams}{2025}
+      \resumeProjectHeading
+          {\textbf{Microsoft Azure Fundamentals (AZ-900)} -- Certified in core Microsoft Azure cloud concepts and services}{2026}
+    \resumeSubHeadingListEnd
+
+\end{document}
