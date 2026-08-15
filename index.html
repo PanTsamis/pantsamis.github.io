@@ -3,123 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panagiotis Tsamis | Fullstack Engineer</title>
+    <title>Panagiotis Tsamis — Computer Science Student</title>
+    <meta name="description" content="Personal portfolio of Panagiotis Tsamis, a Computer Science student at DIT UOA.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%23007bff%22 font-family=%22sans-serif%22 font-weight=%22bold%22>P</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%23f8fafc%22 font-family=%22sans-serif%22 font-weight=%22bold%22>P</text></svg>">
 </head>
 <body>
 
-    <canvas id="math-canvas"></canvas>
+    <div class="layout">
 
-    <div class="overlay"></div>
+        <aside class="sidebar">
+            <div class="sidebar-inner">
+                <div>
+                    <h1>Panagiotis Tsamis</h1>
+                    <p class="role">Computer Science Student</p>
+                    <p class="blurb">19 y/o CS student at DIT UOA, based in Athens, Greece.</p>
+                </div>
 
-    <header>
-        <div class="logo">PanTsamis<span>.dev</span></div>
-        <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙</button>
-    </header>
+                <nav>
+                    <ul class="side-nav" id="sideNav">
+                        <li><a href="#about" class="side-link">About</a></li>
+                        <li><a href="#skills" class="side-link">Skills</a></li>
+                        <li><a href="#projects" class="side-link">Projects</a></li>
+                        <li><a href="#achievements" class="side-link">Achievements</a></li>
+                        <li><a href="#contact" class="side-link">Contact</a></li>
+                    </ul>
+                </nav>
 
-    <main class="container">
-        <section class="hero glass-card">
-            <div class="hero-content">
-                <div class="badge">19-year-old CS Student</div>
-                <h1>Hi, I'm <span class="highlight">Panagiotis Tsamis</span></h1>
-                <h2>Fullstack Software Engineer</h2>
-                <p>
-                    Studying at <strong>DIT EKPA</strong>. Passionate about algorithms, web development, software and hardware engineering.
-                </p>
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                        <span>18,888 Panhellenic Score</span>
-                        <small>100/100 Math & CS</small>
+                <div>
+                    <div class="social-links">
+                        <a href="https://github.com/PanTsamis" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/panagiotis-tsamis-a5aa66382/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="https://www.instagram.com/p1ng2r/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="mailto:ptsames@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
                     </div>
-                    <div class="stat-item">
-                        <i class="fa-solid fa-language"></i>
-                        <span>ECPE Michigan</span>
-                        <small>Proficiency in English</small>
-                    </div>
-                </div>
-                <div class="social-links">
-                    <a href="https://github.com/PanTsamis" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/panagiotis-tsamis-a5aa66382/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="https://www.instagram.com/p1ng2r/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="mailto:ptsames@gmail.com" title="Email Me"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="#" class="btn-link resume-link">Resume <i class="fa-solid fa-download"></i></a>
                 </div>
             </div>
-        </section>
+        </aside>
 
-        <section class="skills-grid">
-            <div class="glass-card skill-card">
-                <h3><i class="fa-solid fa-code"></i> Languages</h3>
-                <div class="tags">
-                    <span>Python</span>
-                    <span>C</span>
-                    <span>JavaScript</span>
-                    <span>HTML</span>
-                    <span>CSS</span>
-                </div>
-            </div>
-            <div class="glass-card skill-card">
-                <h3><i class="fa-solid fa-terminal"></i> Tools</h3>
-                <div class="tags">
-                    <span>Git & GitHub</span>
-                    <span>Linux Terminal</span>
-                    <span>VS Code</span>
-                </div>
-            </div>
-            <div class="glass-card skill-card">
-                <h3><i class="fa-solid fa-microchip"></i> Hardware</h3>
-                <div class="tags">
-                    <span>PC Building</span>
-                    <span>System Architecture</span>
-                </div>
-            </div>
-        </section>
+        <main class="content">
 
-        <h2 class="section-title">Featured Projects</h2>
-        <section class="projects-grid">
-            
-            <div class="glass-card project-card">
-                <div class="project-header">
-                    <i class="fa-solid fa-calculator project-icon"></i>
-                    <h3>Aliquot Sequence Calculator</h3>
-                </div>
-                <p>A full-stack web application that calculates Aliquot sequences. Built with C (Backend) for performance and Python CGI middleware.</p>
-                <div class="tags">
-                    <span class="tech-tag">C</span>
-                    <span class="tech-tag">Python</span>
-                    <span class="tech-tag">HTML/JS</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://pantsamis.github.io/aliquot-calculator/" class="btn-primary" target="_blank">View Live</a>
-                    <a href="https://github.com/PanTsamis/aliquot-calculator" class="btn-secondary" target="_blank">Code</a>
-                </div>
-            </div>
+            <section id="about">
+                <h2>About</h2>
+                <p>I'm a Computer Science student at DIT UOA (Department of Informatics and Telecommunications, National and Kapodistrian University of Athens), where I entered in 2025 with the second-highest grade among all incoming students that year — an 18.888 on the Panhellenic exams, with 100/100 in both Mathematics and Computer Science. Expected to graduate in 2029.</p>
+                <p>Currently maintaining an 8.5+/10 GPA, with a 9 in Introduction to Programming with C and a 10 in Data Structures &amp; Algorithms. Based in Athens, Greece.</p>
+            </section>
 
-            <div class="glass-card project-card">
-                <div class="project-header">
-                    <i class="fa-solid fa-elevator project-icon"></i>
-                    <h3>Elevator Optimization</h3>
-                </div>
-                <p>Algorithmic solver for optimal elevator placement to minimize walking cost. Implements DP, Recursion, Bruteforce and Memoization in C.</p>
-                <div class="tags">
-                    <span class="tech-tag">C</span>
-                    <span class="tech-tag">Algorithms</span>
-                    <span class="tech-tag">Dynamic Programming</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://pantsamis.github.io/elevator-optimization/" class="btn-primary" target="_blank">View Live</a>
-                    <a href="https://github.com/PanTsamis/elevator-optimization" class="btn-secondary" target="_blank">Code</a>
-                </div>
-            </div>
+            <section id="skills">
+                <h2>Skills</h2>
+                <p><strong>Languages —</strong> C/C++, Python, TypeScript, JavaScript, HTML/CSS, SQL</p>
+                <p><strong>Backend &amp; Frameworks —</strong> REST API, FastAPI, Next.js, PostgreSQL</p>
+                <p><strong>DevOps &amp; Cloud —</strong> Docker, Kubernetes, CI/CD, GitHub Actions, Azure, Vercel</p>
+                <p><strong>Systems —</strong> Linux, Bash, Command Line / Terminal, Scripting</p>
+                <p><strong>Tools &amp; AI —</strong> Git, GitHub, Claude Code, MCP</p>
+            </section>
 
-        </section>
-    </main>
+            <section id="projects">
+                <h2>Projects</h2>
+                <ul class="stack-list">
+                    <li>
+                        <h3>p1ng2r.gg</h3>
+                        <p>A website to look up your League of Legends stats, built on the Riot Games API.</p>
+                        <p class="entry-tech">Riot API · Docker · Vercel · Neon</p>
+                        <a href="https://p1ng2r-gg.vercel.app/" class="btn-link" target="_blank">Live <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </li>
+                    <li>
+                        <h3>Mylonas Discord Bot</h3>
+                        <p>A Discord bot that gives quick, AI-Overview-style answers in text channels using Gemini — activated by tagging it. Runs 24/7.</p>
+                        <p class="entry-tech">Python · discord.py · Gemini API</p>
+                    </li>
+                    <li>
+                        <h3>Elevator Optimization</h3>
+                        <p>A C program that solves optimal elevator placement to minimize walking cost, using memoization, brute force, and dynamic programming. Also exposed as an MCP server so tools like Claude Code can call it directly.</p>
+                        <p class="entry-tech">C · Dynamic Programming · MCP</p>
+                        <a href="https://pantsamis.github.io/elevator-optimization/" class="btn-link" target="_blank">Live <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        <a href="https://github.com/PanTsamis/elevator-optimization" class="btn-link" target="_blank">Code <i class="fa-brands fa-github"></i></a>
+                    </li>
+                </ul>
+            </section>
 
-    <footer>
-        <p>Made by PanTsamis</p>
-    </footer>
+            <section id="achievements">
+                <h2>Achievements</h2>
+                <ul class="stack-list">
+                    <li>
+                        <span class="entry-date">2025</span>
+                        <h3>Eurobank "Μπροστά για την Παιδεία" Award</h3>
+                        <p>Awarded for outstanding performance in the 2025 Panhellenic examinations.</p>
+                    </li>
+                    <li>
+                        <span class="entry-date">2022</span>
+                        <h3>Michigan ECPE (C2 Proficiency)</h3>
+                        <p>C2-level certification in English proficiency, University of Michigan.</p>
+                    </li>
+                    <li>
+                        <span class="entry-date">2026</span>
+                        <h3>Microsoft Azure Fundamentals (AZ-900)</h3>
+                        <p>Certified in core Microsoft Azure cloud concepts and services.</p>
+                    </li>
+                </ul>
+            </section>
+
+            <section id="contact">
+                <h2>Contact</h2>
+                <p>Have a project in mind, an opportunity to discuss, or just want to say hi?</p>
+                <a class="contact-line" href="mailto:ptsames@gmail.com">ptsames@gmail.com</a>
+                <p>Athens, Greece</p>
+            </section>
+
+            <footer>
+                <p>&copy; 2026 Panagiotis Tsamis.</p>
+            </footer>
+
+        </main>
+
+    </div>
 
     <script src="script.js"></script>
 </body>
