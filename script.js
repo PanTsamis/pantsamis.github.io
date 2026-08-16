@@ -16,7 +16,10 @@
 // Contact active even though Achievements was clicked. Scroll position alone
 // can't distinguish "clicked Achievements, got clamped" from "scrolled down
 // to read Contact", so clicks set the active link directly and scroll-based
-// detection is paused briefly to avoid being immediately overridden.
+// detection stays paused until the user actually scrolls again (wheel/touch/
+// key), rather than resuming on a fixed timer — a timer could lapse and pick
+// up a stray 'scroll' event (e.g. from a layout reflow) before the user has
+// scrolled at all, snapping straight back to the wrong section.
 const sections = Array.from(document.querySelectorAll('.content section[id]'));
 const navLinkMap = new Map();
 document.querySelectorAll('.side-link').forEach(link => {
@@ -30,17 +33,18 @@ function setActiveLink(id) {
 }
 
 let suppressScrollDetection = false;
-let resumeTimer = null;
 
 navLinkMap.forEach((link, id) => {
     link.addEventListener('click', () => {
         setActiveLink(id);
         suppressScrollDetection = true;
-        clearTimeout(resumeTimer);
-        resumeTimer = setTimeout(() => {
-            suppressScrollDetection = false;
-        }, 700);
     });
+});
+
+['wheel', 'touchmove', 'keydown'].forEach(evt => {
+    window.addEventListener(evt, () => {
+        suppressScrollDetection = false;
+    }, { passive: true });
 });
 
 function updateActiveSection() {
