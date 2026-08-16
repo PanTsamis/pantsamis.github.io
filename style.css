@@ -133,11 +133,13 @@ button:focus-visible {
     flex: 1;
     min-width: 0;
     max-width: 640px;
-    /* Generous, viewport-relative trailing space: without it there isn't
-       enough content after Achievements (the short Contact section + footer)
-       to scroll it fully into view, so it can never become the dominant
-       section on screen and its nav link never activates. */
-    padding: 4rem 0 max(5rem, 50vh);
+    /* Enough trailing space for the second-to-last section (Achievements) to
+       reach the scrollspy threshold before the scroll clamps — see script.js
+       for why the *last* section (Contact) doesn't need this same room: it's
+       handled by an explicit "reached the bottom of the page" check instead,
+       since making it reachable via the threshold too would mean padding out
+       the page with a full viewport height of visible blank space. */
+    padding: 4rem 0 max(5rem, 55vh);
 }
 
 .content section {
@@ -263,5 +265,5 @@ button:focus-visible {
     }
     .side-nav { flex-direction: row; flex-wrap: wrap; gap: 1.25rem; }
     .side-link::before { display: none; }
-    .content { max-width: none; padding: 1rem 0 3rem; }
+    .content { max-width: none; padding: 1rem 0 max(3rem, 55vh); }
 }

@@ -10,11 +10,17 @@
 // section's *next* sibling also cross it, and the loop's last match (the
 // wrong, later section) would win.
 //
-// This only works because `.content` now reserves enough viewport-relative
-// trailing space (see style.css) for the last section (Contact) to actually
-// scroll its top past the line — without that room the browser clamps the
-// scroll before Contact's top ever crosses it.
+// The last section (Contact) gets special treatment: there's a fixed check
+// for having scrolled all the way to the bottom of the page, which forces it
+// active regardless of where its top edge sits. It can't rely on the same
+// threshold as everything else — that would require enough blank space after
+// the footer to scroll Contact's top edge all the way to the top of the
+// viewport (a full extra viewport height, in the worst case), which leaves a
+// visibly empty screen once you scroll past it. `.content`'s trailing padding
+// (see style.css) only needs to be tall enough for the *second-to-last*
+// section (Achievements) to reach the threshold, which is far less space.
 const sections = Array.from(document.querySelectorAll('.content section[id]'));
+const lastSection = sections[sections.length - 1];
 const navLinkMap = new Map();
 document.querySelectorAll('.side-link').forEach(link => {
     navLinkMap.set(link.getAttribute('href').slice(1), link);
@@ -27,6 +33,12 @@ function setActiveLink(id) {
 }
 
 function updateActiveSection() {
+    const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+    if (atBottom) {
+        setActiveLink(lastSection.id);
+        return;
+    }
+
     const threshold = 120;
     let current = sections[0];
     for (const section of sections) {
