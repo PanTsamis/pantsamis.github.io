@@ -8,6 +8,15 @@
 // the viewport top (not 40% down): several sections are shorter than that,
 // so their *next* sibling's top was also above the line and the loop's last
 // match (the wrong, later section) kept winning.
+//
+// The bottom-of-page fallback itself has a side effect: Achievements sits
+// right before the short Contact section, so there isn't enough trailing
+// content to scroll Achievements flush to the top — the browser clamps the
+// jump near the bottom of the page, which trips the fallback and forces
+// Contact active even though Achievements was clicked. Scroll position alone
+// can't distinguish "clicked Achievements, got clamped" from "scrolled down
+// to read Contact", so clicks set the active link directly and scroll-based
+// detection is paused briefly to avoid being immediately overridden.
 const sections = Array.from(document.querySelectorAll('.content section[id]'));
 const navLinkMap = new Map();
 document.querySelectorAll('.side-link').forEach(link => {
@@ -20,7 +29,23 @@ function setActiveLink(id) {
     });
 }
 
+let suppressScrollDetection = false;
+let resumeTimer = null;
+
+navLinkMap.forEach((link, id) => {
+    link.addEventListener('click', () => {
+        setActiveLink(id);
+        suppressScrollDetection = true;
+        clearTimeout(resumeTimer);
+        resumeTimer = setTimeout(() => {
+            suppressScrollDetection = false;
+        }, 700);
+    });
+});
+
 function updateActiveSection() {
+    if (suppressScrollDetection) return;
+
     const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
     if (atBottom) {
         setActiveLink(sections[sections.length - 1].id);
