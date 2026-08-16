@@ -1,25 +1,17 @@
 // --- ACTIVE SIDEBAR LINK ON SCROLL ---
-// A fixed mid-viewport detection band (IntersectionObserver rootMargin
-// approach) never triggers for the first/last section, since reaching the
-// middle of the viewport for About would require scrolling above the top of
-// the page, and there isn't enough room below Contact to scroll it that far
-// up either. A top-of-viewport threshold with an explicit bottom-of-page
-// fallback handles both edge cases. The threshold line has to sit close to
-// the viewport top (not 40% down): several sections are shorter than that,
-// so their *next* sibling's top was also above the line and the loop's last
-// match (the wrong, later section) kept winning.
-//
-// The bottom-of-page fallback itself has a side effect: Achievements sits
-// right before the short Contact section, so there isn't enough trailing
-// content to scroll Achievements flush to the top — the browser clamps the
-// jump near the bottom of the page, which trips the fallback and forces
-// Contact active even though Achievements was clicked. Scroll position alone
-// can't distinguish "clicked Achievements, got clamped" from "scrolled down
-// to read Contact", so clicks set the active link directly and scroll-based
-// detection stays paused until the user actually scrolls again (wheel/touch/
-// key), rather than resuming on a fixed timer — a timer could lapse and pick
-// up a stray 'scroll' event (e.g. from a layout reflow) before the user has
-// scrolled at all, snapping straight back to the wrong section.
+// Highlights whichever section currently occupies the most vertical space in
+// the viewport, instead of checking whether a section's top edge has crossed
+// some fixed line. A top-edge/threshold approach breaks down for sections
+// near the end of the page: there isn't enough content after Achievements
+// (just the short Contact section + footer) to ever scroll it flush with the
+// top, or even past a small threshold, at normal zoom — the browser clamps
+// the scroll first, so its top edge never crosses the line and its nav link
+// never lights up. Picking the most-visible section sidesteps that: it
+// doesn't matter where a section's edges sit, only which one dominates the
+// screen. This depends on there being enough trailing space after the last
+// section for it to become dominant in its own right (see the `.content`
+// bottom padding in style.css) — otherwise Contact could never outweigh
+// Achievements either.
 const sections = Array.from(document.querySelectorAll('.content section[id]'));
 const navLinkMap = new Map();
 document.querySelectorAll('.side-link').forEach(link => {
@@ -32,34 +24,15 @@ function setActiveLink(id) {
     });
 }
 
-let suppressScrollDetection = false;
-
-navLinkMap.forEach((link, id) => {
-    link.addEventListener('click', () => {
-        setActiveLink(id);
-        suppressScrollDetection = true;
-    });
-});
-
-['wheel', 'touchmove', 'keydown'].forEach(evt => {
-    window.addEventListener(evt, () => {
-        suppressScrollDetection = false;
-    }, { passive: true });
-});
-
 function updateActiveSection() {
-    if (suppressScrollDetection) return;
-
-    const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
-    if (atBottom) {
-        setActiveLink(sections[sections.length - 1].id);
-        return;
-    }
-
-    const threshold = 120;
+    const viewportHeight = window.innerHeight;
     let current = sections[0];
+    let mostVisible = -Infinity;
     for (const section of sections) {
-        if (section.getBoundingClientRect().top <= threshold) {
+        const rect = section.getBoundingClientRect();
+        const visible = Math.min(rect.bottom, viewportHeight) - Math.max(rect.top, 0);
+        if (visible > mostVisible) {
+            mostVisible = visible;
             current = section;
         }
     }
