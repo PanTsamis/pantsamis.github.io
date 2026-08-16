@@ -1,17 +1,19 @@
 // --- ACTIVE SIDEBAR LINK ON SCROLL ---
-// Highlights whichever section currently occupies the most vertical space in
-// the viewport, instead of checking whether a section's top edge has crossed
-// some fixed line. A top-edge/threshold approach breaks down for sections
-// near the end of the page: there isn't enough content after Achievements
-// (just the short Contact section + footer) to ever scroll it flush with the
-// top, or even past a small threshold, at normal zoom — the browser clamps
-// the scroll first, so its top edge never crosses the line and its nav link
-// never lights up. Picking the most-visible section sidesteps that: it
-// doesn't matter where a section's edges sit, only which one dominates the
-// screen. This depends on there being enough trailing space after the last
-// section for it to become dominant in its own right (see the `.content`
-// bottom padding in style.css) — otherwise Contact could never outweigh
-// Achievements either.
+// Highlights the last section whose top edge has crossed a line near the top
+// of the viewport. ("Most-visible-area" was tried instead, but it favors
+// whichever section is tallest — Projects/Achievements are long lists, while
+// About/Skills/Contact are a few lines of prose, so the short sections could
+// never out-cover their taller neighbors and their nav links never lit up.)
+//
+// The threshold has to sit close to the viewport top (not further down):
+// several sections are shorter than that, so a lower line would let a
+// section's *next* sibling also cross it, and the loop's last match (the
+// wrong, later section) would win.
+//
+// This only works because `.content` now reserves enough viewport-relative
+// trailing space (see style.css) for the last section (Contact) to actually
+// scroll its top past the line — without that room the browser clamps the
+// scroll before Contact's top ever crosses it.
 const sections = Array.from(document.querySelectorAll('.content section[id]'));
 const navLinkMap = new Map();
 document.querySelectorAll('.side-link').forEach(link => {
@@ -25,14 +27,10 @@ function setActiveLink(id) {
 }
 
 function updateActiveSection() {
-    const viewportHeight = window.innerHeight;
+    const threshold = 120;
     let current = sections[0];
-    let mostVisible = -Infinity;
     for (const section of sections) {
-        const rect = section.getBoundingClientRect();
-        const visible = Math.min(rect.bottom, viewportHeight) - Math.max(rect.top, 0);
-        if (visible > mostVisible) {
-            mostVisible = visible;
+        if (section.getBoundingClientRect().top <= threshold) {
             current = section;
         }
     }
